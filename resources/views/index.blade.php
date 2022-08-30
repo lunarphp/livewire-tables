@@ -1,6 +1,18 @@
 <div class="space-y-4">
     <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
-      <div class="w-full overflow-x-auto">
+      <div class="w-full">
+        <div class="items-center w-full md:space-x-4 md:flex">
+            @if($this->searchable)
+                <div class="w-full md:grow p-4 bg-gray-50">
+                    <x-hub::input.text
+                        :placeholder="$this->searchPlaceholder"
+                        class="py-2"
+                        wire:model.debounce.400ms="query"
+                    />
+                </div>
+            @endif
+        </div>
+
         <table class="min-w-full divide-y divide-gray-200">
           <thead class="bg-gray-50">
             <tr>

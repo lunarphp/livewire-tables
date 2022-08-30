@@ -38,12 +38,15 @@ class Table extends Component
      */
     public $sortDir = null;
 
+    public $query = null;
+
     /**
      * {@inheritDoc}
      */
     protected $queryString = [
         'sortField',
         'sortDir',
+        'query'
     ];
 
     /**
@@ -129,6 +132,16 @@ class Table extends Component
     public function getColumnsProperty()
     {
         return $this->manifest->getColumns();
+    }
+
+    /**
+     * Return the search placeholder.
+     *
+     * @return string
+     */
+    public function getSearchPlaceholderProperty(): string
+    {
+        return 'Search';
     }
 
     public function render()
