@@ -1,0 +1,20 @@
+{
+  "name": "getcandy-livewire-tables",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://getcandy@github.com/getcandy/livewire-tables",
+  "author": "Alec Ritson <alec@getcandy.io>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "npm run development",
+    "development": "mix",
+    "watch": "mix watch",
+    "watch-poll": "mix watch -- --watch-options-poll=1000",
+    "hot": "mix watch --hot",
+    "prod": "npm run production",
+    "production": "mix --production"
+  },
+  "devDependencies": {
+    "laravel-mix": "^6.0.43"
+  }
+}
