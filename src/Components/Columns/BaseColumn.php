@@ -6,13 +6,15 @@ use Closure;
 use GetCandy\LivewireTables\Components\Columns\Concerns\HasClosure;
 use GetCandy\LivewireTables\Components\Columns\Concerns\HasLivewireComponent;
 use GetCandy\LivewireTables\Components\Columns\Concerns\HasViewComponent;
+use GetCandy\LivewireTables\Components\Concerns\HasViewProperties;
 use Livewire\Component;
 
 abstract class BaseColumn extends Component
 {
     use HasLivewireComponent,
         HasClosure,
-        HasViewComponent;
+        HasViewComponent,
+        HasViewProperties;
 
     /**
      * The instance of the record from the table row.
@@ -21,28 +23,11 @@ abstract class BaseColumn extends Component
      */
     public $record;
 
-    public $field = null;
-
-    protected $heading = null;
 
     protected $sortable = false;
 
-    public static function make($field)
-    {
-        return app(static::class)->field($field);
-    }
 
-    public function heading($heading)
-    {
-        $this->heading = $heading;
 
-        return $this;
-    }
-
-    public function getHeading()
-    {
-        return $this->heading ?: $this->field;
-    }
 
     public function sortable(bool $sortable = true): self
     {

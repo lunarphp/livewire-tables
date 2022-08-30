@@ -3,6 +3,7 @@
 namespace GetCandy\LivewireTables;
 
 use GetCandy\LivewireTables\Components\Columns\TextColumn;
+use GetCandy\LivewireTables\Components\Filters\SelectFilter;
 use GetCandy\LivewireTables\Components\Head;
 use GetCandy\LivewireTables\Components\Table;
 use Illuminate\Support\Facades\Blade;
@@ -17,6 +18,7 @@ class LivewireTablesServiceProvider extends ServiceProvider
             Table::class,
             TextColumn::class,
             Head::class,
+            SelectFilter::class,
         ];
 
         foreach ($components as $component) {

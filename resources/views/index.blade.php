@@ -1,9 +1,14 @@
 <div class="space-y-4">
     <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
-      <div class="w-full">
-        <div class="items-center w-full md:space-x-4 md:flex">
+      <div
+        class="w-full"
+        x-data="{
+            showFilters: false
+        }"
+    >
+        <div class="items-center w-full md:space-x-4 md:flex p-4">
             @if($this->searchable)
-                <div class="w-full md:grow p-4 bg-gray-50">
+                <div class="w-full md:grow">
                     <x-hub::input.text
                         :placeholder="$this->searchPlaceholder"
                         class="py-2"
@@ -11,8 +16,22 @@
                     />
                 </div>
             @endif
+            @if($this->tableFilters->count())
+                <x-hub::button theme="gray" @click="showFilters = !showFilters">Filter</x-hub::button>
+            @endif
         </div>
 
+        <div
+            class="bg-white p-4 border-b border-t"
+            x-show="showFilters"
+            x-cloak
+        >
+            <div class="grid grid-cols-4">
+                @foreach($this->tableFilters as $filter)
+                    <div>{{ $filter }}</div>
+                @endforeach
+            </div>
+        </div>
         <table class="min-w-full divide-y divide-gray-200">
           <thead class="bg-gray-50">
             <tr>

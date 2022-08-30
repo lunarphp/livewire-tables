@@ -40,13 +40,16 @@ class Table extends Component
 
     public $query = null;
 
+    public array $filters = [];
+
     /**
      * {@inheritDoc}
      */
     protected $queryString = [
         'sortField',
         'sortDir',
-        'query'
+        'query',
+        'filters',
     ];
 
     /**
@@ -132,6 +135,11 @@ class Table extends Component
     public function getColumnsProperty()
     {
         return $this->manifest->getColumns();
+    }
+
+    public function getTableFiltersProperty()
+    {
+        return $this->manifest->getFilters();
     }
 
     /**
