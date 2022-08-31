@@ -44,6 +44,9 @@
                     'sortDir' => $sortDir,
                 ], key($column->field))
               @endforeach
+              @if($this->actions->count())
+                <td></td>
+              @endif
             </tr>
           </thead>
 
@@ -64,6 +67,10 @@
                     @endif
                   </x-tables::cell>
                 @endforeach
+
+                <x-tables::cell>
+                    <x-tables::action-cell :actions="$this->actions" :record="$row" />
+                </x-tables::cell>
               </tr>
             @endforeach
           </tbody>

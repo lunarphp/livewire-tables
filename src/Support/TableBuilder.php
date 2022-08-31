@@ -2,6 +2,7 @@
 
 namespace GetCandy\LivewireTables\Support;
 
+use GetCandy\LivewireTables\Components\Actions\Action;
 use GetCandy\LivewireTables\Components\Columns\BaseColumn;
 use GetCandy\LivewireTables\Components\Filters\BaseFilter;
 use Illuminate\Support\Collection;
@@ -23,12 +24,20 @@ class TableBuilder implements TableBuilderInterface
     public Collection $filters;
 
     /**
+     * The actions available to the table.
+     *
+     * @var Collection
+     */
+    public Collection $actions;
+
+    /**
      * Initialise the TableBuilder
      */
     public function __construct()
     {
         $this->columns = collect();
         $this->filters = collect();
+        $this->actions = collect();
     }
 
     /**
@@ -77,5 +86,28 @@ class TableBuilder implements TableBuilderInterface
     public function getFilters(): Collection
     {
         return $this->filters;
+    }
+
+    /**
+     * Add an action to the builder.
+     *
+     * @param Action $action
+     *
+     * @return self
+     */
+    public function addAction(Action $action): self
+    {
+        $this->actions->push($action);
+        return $this;
+    }
+
+    /**
+     * Return the available actions.
+     *
+     * @return Collection
+     */
+    public function getActions(): Collection
+    {
+        return $this->actions;
     }
 }

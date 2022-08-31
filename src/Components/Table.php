@@ -164,6 +164,11 @@ class Table extends Component
         return $this->tableBuilder->getFilters();
     }
 
+    public function getActionsProperty()
+    {
+        return $this->tableBuilder->getActions();
+    }
+
     /**
      * Return the search placeholder.
      *
