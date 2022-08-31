@@ -53,6 +53,13 @@ class Table extends Component
     public $query = null;
 
     /**
+     * The array of selected rows.
+     *
+     * @var array
+     */
+    public array $selected = [];
+
+    /**
      * The applied filters.
      *
      * @var array
@@ -172,6 +179,16 @@ class Table extends Component
     public function getActionsProperty()
     {
         return $this->tableBuilder->getActions();
+    }
+
+    /**
+     * Return the bulk actions available.
+     *
+     * @return void  Collection
+     */
+    public function getBulkActionsProperty()
+    {
+        return $this->tableBuilder->getBulkActions();
     }
 
     /**

@@ -19,7 +19,7 @@
         </svg>
     </button>
 
-    <div class="absolute bg-white shadow left-0 rounded overflow-hidden" :class="{
+    <div class="absolute bg-white shadow left-0 rounded overflow-hidden" x-cloak :class="{
         'hidden' : !open
     }">
         @foreach($this->actions as $actionIndex => $action)

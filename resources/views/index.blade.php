@@ -3,9 +3,23 @@
       <div
         class="w-full"
         x-data="{
-            showFilters: false
+          showFilters: false,
+          selected: @entangle('selected').defer,
+          toggleSelectAll() {
+            if (!this.selected.length) {
+              this.selected = {{ json_encode($this->rows->pluck('id')->toArray()) }}
+            } else {
+              this.selected = []
+            }
+
+          }
         }"
     >
+        <div x-show="selected.length" class="p-4" x-cloak>
+          @foreach($this->bulkActions as $action)
+            {{ $action }}
+          @endforeach
+        </div>
         <div class="items-center w-full md:space-x-4 md:flex p-4">
             @if($this->searchable)
                 <div class="w-full md:grow">
@@ -35,6 +49,11 @@
         <table class="min-w-full divide-y divide-gray-200">
           <thead class="bg-gray-50">
             <tr>
+              @if($this->bulkActions->count())
+                <td class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <x-hub::input.checkbox @click="toggleSelectAll" />
+                </td>
+              @endif
               @foreach($this->columns as $column)
                 @livewire('get-candy.livewire-tables.components.head', [
                     'heading' => $column->getHeading(),
@@ -48,11 +67,25 @@
                 <td></td>
               @endif
             </tr>
+
+            <tr x-cloak x-show="selected.length">
+              <td colspan="50">
+                <div class="bg-blue-50 text-blue-800 px-4 py-2 border-t border-blue-200 text-sm">
+                  Selected <span x-text="selected.length"></span> of {{ $this->rows->count() }} results.
+                </div>
+              </td>
+            </tr>
           </thead>
 
           <tbody class="relative">
             @foreach($this->rows as $row)
               <tr class="bg-white even:bg-gray-50" wire:key="table_row_{{ $row->id }}">
+                @if($this->bulkActions->count())
+                  <x-tables::cell>
+                    <x-hub::input.checkbox x-model="selected" value="{{ $row->id }}" />
+                  </x-tables::cell>
+                @endif
+
                 @foreach($this->columns as $column)
                   <x-tables::cell :sort="true" wire:key="column_{{ $column->field }}">
                     @if($column->isLivewire())

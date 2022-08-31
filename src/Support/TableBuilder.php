@@ -3,6 +3,7 @@
 namespace GetCandy\LivewireTables\Support;
 
 use GetCandy\LivewireTables\Components\Actions\Action;
+use GetCandy\LivewireTables\Components\Actions\BulkAction;
 use GetCandy\LivewireTables\Components\Columns\BaseColumn;
 use GetCandy\LivewireTables\Components\Filters\BaseFilter;
 use Illuminate\Support\Collection;
@@ -31,6 +32,13 @@ class TableBuilder implements TableBuilderInterface
     public Collection $actions;
 
     /**
+     * The bulk actions available.
+     *
+     * @var Collection
+     */
+    public Collection $bulkActions;
+
+    /**
      * Initialise the TableBuilder
      */
     public function __construct()
@@ -38,6 +46,7 @@ class TableBuilder implements TableBuilderInterface
         $this->columns = collect();
         $this->filters = collect();
         $this->actions = collect();
+        $this->bulkActions = collect();
     }
 
     /**
@@ -109,5 +118,28 @@ class TableBuilder implements TableBuilderInterface
     public function getActions(): Collection
     {
         return $this->actions;
+    }
+
+    /**
+     * Add a bulk action to the table builder.
+     *
+     * @param BulkAction $bulkAction
+     *
+     * @return self
+     */
+    public function addBulkAction(BulkAction $bulkAction): self
+    {
+        $this->bulkActions->push($bulkAction);
+        return $this;
+    }
+
+    /**
+     * Return the available bulk actions
+     *
+     * @return Collection
+     */
+    public function getBulkActions(): Collection
+    {
+        return $this->bulkActions;
     }
 }
