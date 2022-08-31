@@ -3,6 +3,7 @@
 namespace GetCandy\LivewireTables\Components;
 
 use GetCandy\LivewireTables\Components\Concerns\HasSavedSearches;
+use GetCandy\LivewireTables\Components\Concerns\HasSortableColumns;
 use GetCandy\LivewireTables\Support\TableBuilderInterface;
 use Livewire\Component;
 use Illuminate\Support\Collection;
@@ -11,7 +12,8 @@ use Livewire\WithPagination;
 class Table extends Component
 {
     use WithPagination,
-        HasSavedSearches;
+        HasSavedSearches,
+        HasSortableColumns;
 
     /**
      * The binding to use when building out the table.
