@@ -164,6 +164,11 @@ class Table extends Component
         return $this->tableBuilder->getFilters();
     }
 
+    /**
+     * Return the actions available to the table.
+     *
+     * @return Collection
+     */
     public function getActionsProperty()
     {
         return $this->tableBuilder->getActions();
