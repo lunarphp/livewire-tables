@@ -3,6 +3,7 @@
         open: false
     }"
     class="relative"
+    @click.away="open = false"
 >
     <button
         @click="open = !open"
