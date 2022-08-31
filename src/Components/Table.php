@@ -2,6 +2,7 @@
 
 namespace GetCandy\LivewireTables\Components;
 
+use GetCandy\LivewireTables\Support\TableBuilderInterface;
 use GetCandy\LivewireTables\TableManifest;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -122,9 +123,9 @@ class Table extends Component
      *
      * @return TableManifest
      */
-    public function getManifestProperty()
+    public function getTableBuilderProperty()
     {
-        return app(TableManifest::class);
+        return app(TableBuilderInterface::class);
     }
 
     /**
@@ -134,12 +135,12 @@ class Table extends Component
      */
     public function getColumnsProperty()
     {
-        return $this->manifest->getColumns();
+        return $this->tableBuilder->getColumns();
     }
 
     public function getTableFiltersProperty()
     {
-        return $this->manifest->getFilters();
+        return $this->tableBuilder->getFilters();
     }
 
     /**

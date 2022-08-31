@@ -6,6 +6,8 @@ use GetCandy\LivewireTables\Components\Columns\TextColumn;
 use GetCandy\LivewireTables\Components\Filters\SelectFilter;
 use GetCandy\LivewireTables\Components\Head;
 use GetCandy\LivewireTables\Components\Table;
+use GetCandy\LivewireTables\Support\TableBuilder;
+use GetCandy\LivewireTables\Support\TableBuilderInterface;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
@@ -14,6 +16,10 @@ class LivewireTablesServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        $this->app->bind(TableBuilderInterface::class, function ($app) {
+           return $app->make(TableBuilder::class);
+        });
+
         $components = [
             Table::class,
             TextColumn::class,
