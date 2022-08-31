@@ -2,6 +2,7 @@
 
 namespace GetCandy\LivewireTables\Components;
 
+use GetCandy\LivewireTables\Components\Concerns\HasSavedSearches;
 use GetCandy\LivewireTables\Support\TableBuilderInterface;
 use Livewire\Component;
 use Illuminate\Support\Collection;
@@ -9,7 +10,8 @@ use Livewire\WithPagination;
 
 class Table extends Component
 {
-    use WithPagination;
+    use WithPagination,
+        HasSavedSearches;
 
     /**
      * The binding to use when building out the table.
@@ -33,27 +35,6 @@ class Table extends Component
     public $searchable = false;
 
     /**
-     * Whether the table can save searches.
-     *
-     * @var bool
-     */
-    public bool $canSaveSearches = false;
-
-    /**
-     * The field to sort on.
-     *
-     * @var string|null
-     */
-    public $sortField = null;
-
-    /**
-     * The sort direction.
-     *
-     * @var string|null
-     */
-    public $sortDir = null;
-
-    /**
      * The search query
      *
      * @var string|null
@@ -75,13 +56,6 @@ class Table extends Component
     public array $filters = [];
 
     /**
-     * The saved search reference
-     *
-     * @var string|null
-     */
-    public ?string $savedSearch = null;
-
-    /**
      * {@inheritDoc}
      */
     protected $queryString = [
@@ -100,25 +74,6 @@ class Table extends Component
         return [
             'sort',
         ];
-    }
-
-    /**
-     * Apply the sorting to the query string.
-     *
-     * @param array|null $event
-     *
-     * @return void
-     */
-    public function sort($event)
-    {
-        if ($event) {
-            [$sortField, $sortDir] = explode(':', $event);
-            $this->sortField = $sortField;
-            $this->sortDir = $sortDir;
-        } else {
-            $this->sortField = null;
-            $this->sortDir = null;
-        }
     }
 
     /**
@@ -205,21 +160,6 @@ class Table extends Component
     public function getBulkActionsProperty()
     {
         return $this->tableBuilder->getBulkActions();
-    }
-
-    /**
-     * Return the saved searches available to the table.
-     *
-     * @return Collection
-     */
-    public function getSavedSearchesProperty(): Collection
-    {
-        return collect();
-    }
-
-    public function applySavedSearch($key)
-    {
-        $this->savedSearch = $key;
     }
 
     /**
