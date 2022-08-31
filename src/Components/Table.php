@@ -3,13 +3,19 @@
 namespace GetCandy\LivewireTables\Components;
 
 use GetCandy\LivewireTables\Support\TableBuilderInterface;
-use GetCandy\LivewireTables\TableManifest;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class Table extends Component
 {
     use WithPagination;
+
+    /**
+     * The binding to use when building out the table.
+     *
+     * @var string
+     */
+    protected $tableBuilderBinding = TableBuilderInterface::class;
 
     /**
      * Whether this table should use pagination.
@@ -39,8 +45,18 @@ class Table extends Component
      */
     public $sortDir = null;
 
+    /**
+     * The search query
+     *
+     * @var string|null
+     */
     public $query = null;
 
+    /**
+     * The applied filters.
+     *
+     * @var array
+     */
     public array $filters = [];
 
     /**
@@ -125,7 +141,7 @@ class Table extends Component
      */
     public function getTableBuilderProperty()
     {
-        return app(TableBuilderInterface::class);
+        return app($this->tableBuilderBinding);
     }
 
     /**
@@ -138,6 +154,11 @@ class Table extends Component
         return $this->tableBuilder->getColumns();
     }
 
+    /**
+     * Return the filters available to the table.
+     *
+     * @return Collection
+     */
     public function getTableFiltersProperty()
     {
         return $this->tableBuilder->getFilters();
@@ -153,6 +174,9 @@ class Table extends Component
         return 'Search';
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function render()
     {
         return view('tables::index');

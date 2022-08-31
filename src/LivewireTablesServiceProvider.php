@@ -14,12 +14,15 @@ use Livewire\Livewire;
 
 class LivewireTablesServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function register()
     {
         $this->app->bind(TableBuilderInterface::class, function ($app) {
            return $app->make(TableBuilder::class);
         });
+    }
 
+    public function boot()
+    {
         $components = [
             Table::class,
             TextColumn::class,
