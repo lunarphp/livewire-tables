@@ -1,4 +1,11 @@
 <div class="space-y-4">
+    <div>
+      @foreach($this->savedSearches as $savedSearch)
+        <x-hub::button theme="gray" wire:click="applySavedSearch({{ $savedSearch['key'] }})">
+          {{ $savedSearch['label'] }}
+        </x-hub::button>
+      @endforeach
+    </div>
     <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
       <div
         class="w-full"

@@ -4,6 +4,7 @@ namespace GetCandy\LivewireTables\Components;
 
 use GetCandy\LivewireTables\Support\TableBuilderInterface;
 use Livewire\Component;
+use Illuminate\Support\Collection;
 use Livewire\WithPagination;
 
 class Table extends Component
@@ -30,6 +31,13 @@ class Table extends Component
      * @var bool
      */
     public $searchable = false;
+
+    /**
+     * Whether the table can save searches.
+     *
+     * @var bool
+     */
+    public bool $canSaveSearches = false;
 
     /**
      * The field to sort on.
@@ -67,6 +75,13 @@ class Table extends Component
     public array $filters = [];
 
     /**
+     * The saved search reference
+     *
+     * @var string|null
+     */
+    public ?string $savedSearch = null;
+
+    /**
      * {@inheritDoc}
      */
     protected $queryString = [
@@ -74,6 +89,7 @@ class Table extends Component
         'sortDir',
         'query',
         'filters',
+        'savedSearch',
     ];
 
     /**
@@ -189,6 +205,21 @@ class Table extends Component
     public function getBulkActionsProperty()
     {
         return $this->tableBuilder->getBulkActions();
+    }
+
+    /**
+     * Return the saved searches available to the table.
+     *
+     * @return Collection
+     */
+    public function getSavedSearchesProperty(): Collection
+    {
+        return collect();
+    }
+
+    public function applySavedSearch($key)
+    {
+        $this->savedSearch = $key;
     }
 
     /**
