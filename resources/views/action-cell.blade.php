@@ -24,7 +24,7 @@
              x-show="isActive"
              x-on:click.away="isActive = false"
              x-on:keydown.escape.window="isActive = false"
-             class="absolute right-0 z-10 w-48 mt-2 text-left origin-top-right bg-white border border-gray-100 rounded-lg shadow-sdm">
+             class="absolute right-0 z-50 w-48 mt-2 text-left origin-top-right bg-white border border-gray-100 rounded-lg shadow-sdm">
             <div class="p-2">
                 @foreach ($this->actions as $actionIndex => $action)
                     @php
