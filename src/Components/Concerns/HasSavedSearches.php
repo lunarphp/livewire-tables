@@ -20,6 +20,8 @@ trait HasSavedSearches
      */
     public ?string $savedSearch = null;
 
+    public ?string $savedSearchName = null;
+
     /**
      * Return the saved searches available to the table.
      *
@@ -40,5 +42,27 @@ trait HasSavedSearches
     public function applySavedSearch($key)
     {
         $this->savedSearch = $key;
+    }
+
+    public function saveSearch()
+    {
+        //
+    }
+
+    public function getHasSearchAppliedProperty()
+    {
+        $applied = false;
+
+        if ($this->query) {
+            return true;
+        }
+
+        foreach ($this->filters as $filter) {
+            if ($filter) {
+                $applied = true;
+            }
+        }
+
+        return $applied;
     }
 }
