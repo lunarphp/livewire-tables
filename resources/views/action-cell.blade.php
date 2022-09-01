@@ -3,14 +3,14 @@
     <div
          class="inline-flex items-stretch bg-white border border-gray-200 rounded-md hover:shadow-sm focus-within:ring focus-within:ring-blue-100">
         <a href="/edit"
-           class="button button-gray px-2.5 py-2 text-xs">
+           class="button button-gray px-2.5 py-2 text-xs !border-0 !rounded-r-none focus:!ring-transparent focus:bg-gray-50">
             Edit
         </a>
 
         <x-tables::button size="xs"
                           aria-label="Toggle Menu"
                           x-on:click="isActive = !isActive"
-                          class="!border-y-0 !border-r-0 !rounded-l-none">
+                          class="!border-y-0 !border-r-0 !rounded-l-none focus:!ring-transparent focus:bg-gray-50">
             <svg xmlns="http://www.w3.org/2000/svg"
                  class="w-4 h-4"
                  viewBox="0 0 20 20"
