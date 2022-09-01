@@ -4,8 +4,8 @@
         Livewire.on('savedSearch', () => this.savingSearch = false)
     }
 }">
-    <div x-show="savingSearch"
-         x-cloak>
+    <div x-cloak
+         x-show="savingSearch">
         <x-tables::support.modal>
             <div class="p-4 space-y-4">
                 <x-hub::input.group for="savedSearchName"
@@ -57,7 +57,7 @@
                                        id="Search"
                                        placeholder="{{ $this->searchPlaceholder }}"
                                        wire:model.debounce.500ms="query"
-                                       class="w-full pl-10 text-sm text-gray-700 border-gray-200 rounded-md focus:outline-none focus:ring focus:ring-blue-100 focus:border-blue-300">
+                                       class="w-full pl-10 text-sm text-gray-700 border-gray-200 rounded-md form-input focus:outline-none focus:ring focus:ring-blue-100 focus:border-blue-300">
                             </div>
                         </div>
                     @endif
@@ -148,7 +148,7 @@
                                 <td class="w-10 py-3 pl-4 leading-none">
                                     <input type="checkbox"
                                            x-on:click="toggleSelectAll"
-                                           class="w-5 h-5 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-100 focus:border-blue-300 focus:ring-offset-0">
+                                           class="w-5 h-5 border border-gray-300 rounded-md form-checkbox focus:outline-none focus:ring focus:ring-blue-100 focus:border-blue-300 focus:ring-offset-0">
                                 </td>
                             @endif
 
@@ -193,7 +193,7 @@
                                         <input type="checkbox"
                                                x-model="selected"
                                                value="{{ $row->id }}"
-                                               class="w-5 h-5 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-100 focus:border-blue-300 focus:ring-offset-0">
+                                               class="w-5 h-5 border border-gray-300 rounded-md form-checkbox focus:outline-none focus:ring focus:ring-blue-100 focus:border-blue-300 focus:ring-offset-0">
                                     </x-tables::cell>
                                 @endif
 
