@@ -39,9 +39,9 @@ class LivewireTablesServiceProvider extends ServiceProvider
         Blade::directive('livewireTablesAssets', function () {
             $manifest = json_decode(file_get_contents(__DIR__.'/../dist/mix-manifest.json'), true);
 
-            $jsUrl = asset('/vendor/livewire-tables'.$manifest['/livewire-tables.js']);
+            $jsUrl = asset('/vendor/livewire-tables'.$manifest['/livewire-tables/app.js']);
 
-            $cssUrl = asset('/vendor/livewire-tables'.$manifest['/livewire-tables.css']);
+            $cssUrl = asset('/vendor/livewire-tables'.$manifest['/livewire-tables/app.css']);
 
             return  <<<EOT
                 <script defer src="{$jsUrl}"></script>
