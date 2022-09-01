@@ -1,12 +1,17 @@
 <div>
-    @if($url)
-        <a
-            href="{{ call_user_func($url, $record) }}"
-            class="text-blue-600 hover:underline block py-1 px-2"
-        >
-            {{ $label }}
+    @if ($url)
+        <a role="menuitem"
+           href="{{ call_user_func($url, $record) }}"
+           class="block px-4 py-2 text-xs font-medium text-gray-600 rounded-md hover:bg-gray-50 hover:text-gray-700">
+            <span class="capitalize">
+                {{ $label }}
+            </span>
         </a>
     @else
-        {{ $label }}
+        <p class="px-4 py-2 text-xs font-medium text-gray-600">
+            <span class="capitalize">
+                {{ $label }}
+            </span>
+        </p>
     @endif
 </div>
