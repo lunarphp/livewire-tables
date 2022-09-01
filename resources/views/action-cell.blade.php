@@ -1,6 +1,7 @@
-<div class="relative">
-    <div class="inline-flex items-stretch bg-white border border-gray-200 rounded-md hover:shadow-sm focus-within:border-blue-300 focus-within:ring focus-within:ring-blue-100"
-         x-data="{ isActive: false }">
+<div x-data="{ isActive: false }"
+     class="relative">
+    <div
+         class="inline-flex items-stretch bg-white border border-gray-200 rounded-md hover:shadow-sm focus-within:border-blue-300 focus-within:ring focus-within:ring-blue-100">
         <a href="/edit"
            class="px-3 py-2 text-xs font-medium text-gray-600 transition rounded-l-md hover:text-gray-700 hover:bg-gray-50 focus:bg-gray-100 focus:outline-none">
             Edit

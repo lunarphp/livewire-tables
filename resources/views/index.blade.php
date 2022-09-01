@@ -25,10 +25,11 @@
         <div x-data="{
             showFilters: false,
             selected: @entangle('selected').defer,
-            toggleSelectAll() {
-                this.selected = this.selected.length ? [] : {{ json_encode($this->rows->pluck('id')->toArray()) }}
-            }
+            selectedAll: false,
         }"
+             x-init="$watch('selectedAll', function(isChecked) {
+                 selected = isChecked ? {{ json_encode($this->rows->pluck('id')->toArray()) }} : []
+             })"
              class="w-full divide-y divide-gray-200">
             <div class="p-4">
                 <div class="flex items-center gap-2 sm:gap-4">
@@ -69,10 +70,16 @@
                         </button>
                     @endif
 
-                    @if ($this->tableFilters->count())
+                    @if (count($this->tableFilters))
                         <button x-on:click="showFilters = !showFilters"
                                 class="px-3 py-2 text-sm font-medium text-gray-600 transition bg-white border border-gray-200 rounded-md hover:bg-gray-50 hover:text-gray-700 hover:shadow-sm focus:outline-none focus:ring focus:ring-blue-100 focus:border-blue-300">
                             Filters
+
+                            @if (count($this->filters))
+                                <sup>
+                                    ({{ count($this->filters) }})
+                                </sup>
+                            @endif
                         </button>
                     @endif
                 </div>
@@ -147,7 +154,7 @@
                             @if ($this->bulkActions->count())
                                 <td class="w-10 py-3 pl-4 leading-none">
                                     <input type="checkbox"
-                                           x-on:click="toggleSelectAll"
+                                           x-model="selectedAll"
                                            class="w-5 h-5 border border-gray-300 rounded-md form-checkbox focus:outline-none focus:ring focus:ring-blue-100 focus:border-blue-300 focus:ring-offset-0">
                                 </td>
                             @endif
