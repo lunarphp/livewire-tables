@@ -2,6 +2,8 @@
 
 namespace GetCandy\LivewireTables\Components\Concerns;
 
+use Closure;
+
 trait HasViewProperties
 {
     public $field = null;
@@ -27,8 +29,14 @@ trait HasViewProperties
         return $this->heading ?: $this->field;
     }
 
-    public static function make($field)
+    public static function make($field, Closure $value = null)
     {
-        return app(static::class)->field($field);
+        $class = app(static::class)->field($field);
+
+        if ($value) {
+            $class->value($value);
+        }
+
+        return $class;
     }
 }

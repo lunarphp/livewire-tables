@@ -18,6 +18,13 @@ class TableBuilder implements TableBuilderInterface
     public Collection $columns;
 
     /**
+     * The base columns set on the table.
+     *
+     * @var Collection
+     */
+    public Collection $baseColumns;
+
+    /**
      * The filters available to the table.
      *
      * @var Collection
@@ -44,6 +51,7 @@ class TableBuilder implements TableBuilderInterface
     public function __construct()
     {
         $this->columns = collect();
+        $this->baseColumns = collect();
         $this->filters = collect();
         $this->actions = collect();
         $this->bulkActions = collect();
@@ -58,7 +66,21 @@ class TableBuilder implements TableBuilderInterface
      */
     public function addColumn(BaseColumn $column): self
     {
-        $this->columns->push($column);
+        $this->columns->prepend($column);
+
+        return $this;
+    }
+
+    public function addColumns(iterable $columns): self
+    {
+        $this->columns = $this->columns->merge($columns);
+
+        return $this;
+    }
+
+    public function baseColumns(iterable $columns): self
+    {
+        $this->baseColumns = collect($columns);
 
         return $this;
     }
@@ -70,7 +92,9 @@ class TableBuilder implements TableBuilderInterface
      */
     public function getColumns(): Collection
     {
-        return $this->columns;
+        return $this->baseColumns->merge(
+            $this->columns
+        );
     }
 
     /**

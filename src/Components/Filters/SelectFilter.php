@@ -26,9 +26,13 @@ class SelectFilter extends BaseFilter
         ];
     }
 
-    public function options(Closure $closure)
+    public function options($options)
     {
-        $this->options = call_user_func($closure)->map(function ($option, $key) {
+        if ($options instanceof Closure) {
+            $options = call_user_func($options);
+        }
+
+        $this->options = $options->map(function ($option, $key) {
             if (!is_array($option)) {
                 return [
                     'label' => $option,

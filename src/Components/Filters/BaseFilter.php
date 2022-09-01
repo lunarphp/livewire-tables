@@ -2,6 +2,7 @@
 
 namespace GetCandy\LivewireTables\Components\Filters;
 
+use Closure;
 use GetCandy\LivewireTables\Components\Concerns\HasViewProperties;
 use Livewire\Component;
 use Illuminate\Contracts\Support\Htmlable;
@@ -12,6 +13,20 @@ abstract class BaseFilter extends Component implements Htmlable
     use HasViewProperties;
 
     public $view = 'tables::filters.base';
+
+    protected $query;
+
+    public function query(Closure $query)
+    {
+        $this->query = $query;
+
+        return $this;
+    }
+
+    public function getQuery()
+    {
+        return $this->query;
+    }
 
     public function toHtml()
     {

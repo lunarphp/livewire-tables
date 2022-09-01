@@ -3,9 +3,9 @@
 namespace GetCandy\LivewireTables\Components\Actions;
 
 use Closure;
-use GetCandy\LivewireTables\Components\Columns\Concerns\HasClosure;
-use GetCandy\LivewireTables\Components\Columns\Concerns\HasLivewireComponent;
-use GetCandy\LivewireTables\Components\Columns\Concerns\HasViewComponent;
+use GetCandy\LivewireTables\Components\Concerns\HasClosure;
+use GetCandy\LivewireTables\Components\Concerns\HasLivewireComponent;
+use GetCandy\LivewireTables\Components\Concerns\HasViewComponent;
 use GetCandy\LivewireTables\Components\Concerns\HasViewProperties;
 use Livewire\Component;
 use Illuminate\Contracts\Support\Htmlable;

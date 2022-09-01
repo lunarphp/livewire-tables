@@ -122,7 +122,7 @@
               <tr class="bg-white even:bg-gray-50" wire:key="table_row_{{ $row->id }}">
                 @if($this->bulkActions->count())
                   <x-tables::cell>
-                    <x-hub::input.checkbox x-model="selected" value="{{ $row->id }}" />
+                    <input type="checkbox" x-model="selected" value="{{ $row->id }}" />
                   </x-tables::cell>
                 @endif
 

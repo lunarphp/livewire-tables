@@ -1,6 +1,6 @@
 <?php
 
-namespace GetCandy\LivewireTables\Components\Columns\Concerns;
+namespace GetCandy\LivewireTables\Components\Concerns;
 
 trait HasLivewireComponent
 {
