@@ -211,8 +211,7 @@
                                     </x-tables::cell>
                                 @endforeach
 
-                                <x-tables::cell
-                                                class="sticky inset-y-0 right-0 text-right z-10 {{ $loop->odd ? 'bg-white/90' : 'bg-gray-50/90' }}">
+                                <x-tables::cell class="text-right ">
                                     <x-tables::action-cell :actions="$this->actions"
                                                            :record="$row" />
                                 </x-tables::cell>
