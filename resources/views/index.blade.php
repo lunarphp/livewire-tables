@@ -90,7 +90,7 @@
                             Filters
 
                             @if (count($this->filters))
-                                <sup>
+                                <sup class="top-0">
                                     ({{ count($this->filters) }})
                                 </sup>
                             @endif
@@ -138,7 +138,9 @@
                     <div class="-my-4 divide-y divide-gray-100">
                         <div :hidden="!selected.length"
                              class="py-4">
-                            <p class="text-sm font-medium text-gray-900">Bulk Actions</p>
+                            <p class="text-sm font-medium text-gray-900">
+                                Bulk Actions
+                            </p>
 
                             <div class="flex flex-wrap gap-4 mt-2">
                                 @foreach ($this->bulkActions as $action)
@@ -149,7 +151,9 @@
 
                         <div :hidden="!showFilters"
                              class="py-4">
-                            <p class="sr-only">Filters</p>
+                            <p class="sr-only">
+                                Filters
+                            </p>
 
                             <div class="flex flex-wrap gap-4">
                                 @foreach ($this->tableFilters as $filter)
