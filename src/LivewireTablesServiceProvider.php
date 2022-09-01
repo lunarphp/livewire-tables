@@ -36,6 +36,19 @@ class LivewireTablesServiceProvider extends ServiceProvider
 
         Blade::componentNamespace('GetCandy\\LivewireTables\\View', 'tables');
 
+        Blade::directive('livewireTablesAssets', function () {
+            $manifest = json_decode(file_get_contents(__DIR__.'/../dist/mix-manifest.json'), true);
+
+            $jsUrl = asset('/vendor/livewire-tables'.$manifest['/livewire-tables.js']);
+
+            $cssUrl = asset('/vendor/livewire-tables'.$manifest['/livewire-tables.css']);
+
+            return  <<<EOT
+                <script defer src="{$jsUrl}"></script>
+                <link rel="stylesheet" href="{$cssUrl}" />
+            EOT;
+        });
+
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'tables');
 
         $this->publishes([
