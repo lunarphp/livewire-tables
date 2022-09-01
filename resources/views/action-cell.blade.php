@@ -1,14 +1,16 @@
 <div x-data="{ isActive: false }"
      class="relative">
     <div
-         class="inline-flex items-stretch bg-white border border-gray-200 rounded-md hover:shadow-sm focus-within:border-blue-300 focus-within:ring focus-within:ring-blue-100">
+         class="inline-flex items-stretch bg-white border border-gray-200 rounded-md hover:shadow-sm focus-within:ring focus-within:ring-blue-100">
         <a href="/edit"
-           class="px-3 py-2 text-xs font-medium text-gray-600 transition rounded-l-md hover:text-gray-700 hover:bg-gray-50 focus:bg-gray-100 focus:outline-none">
+           class="button button-gray px-2.5 py-2 text-xs">
             Edit
         </a>
 
-        <button x-on:click="isActive = !isActive"
-                class="grid px-2.5 py-2 text-gray-600 border-l border-gray-200 place-content-center hover:text-gray-700 rounded-r-md hover:bg-gray-50 transition focus:bg-gray-100 focus:outline-none">
+        <x-tables::button size="xs"
+                          aria-label="Toggle Menu"
+                          x-on:click="isActive = !isActive"
+                          class="!border-y-0 !border-r-0 !rounded-l-none">
             <svg xmlns="http://www.w3.org/2000/svg"
                  class="w-4 h-4"
                  viewBox="0 0 20 20"
@@ -17,7 +19,7 @@
                       d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
                       clip-rule="evenodd" />
             </svg>
-        </button>
+        </x-tables::button>
     </div>
 
     <div x-cloak
