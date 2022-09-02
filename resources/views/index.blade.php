@@ -89,9 +89,9 @@
                         <x-tables::button x-on:click="showFilters = !showFilters">
                             Filters
 
-                            @if (count($this->filters))
+                            @if ($this->activeFiltersCount)
                                 <sup class="lt-top-0">
-                                    ({{ count($this->filters) }})
+                                    ({{ $this->activeFiltersCount }})
                                 </sup>
                             @endif
                         </x-tables::button>
