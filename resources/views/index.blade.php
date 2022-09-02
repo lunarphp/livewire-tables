@@ -106,7 +106,7 @@
                                 <x-tables::button size="xs"
                                                   aria-label="Delete Saved Search"
                                                   wire:click="deleteSavedSearch({{ $savedSearch['key'] }})"
-                                                  class="!border-0 !rounded-r-none focus:!lt-ring-transparent focus:lt-bg-gray-50">
+                                                  class="!lt-border-0 !lt-rounded-r-none focus:!lt-ring-transparent focus:lt-bg-gray-50">
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                          fill="none"
                                          viewBox="0 0 24 24"
@@ -123,7 +123,11 @@
                                                   aria-label="Apply Saved Search"
                                                   wire:click="applySavedSearch({{ $savedSearch['key'] }})"
                                                   class="!lt-border-y-0 !lt-border-r-0 !lt-rounded-l-none focus:!lt-ring-transparent focus:lt-bg-gray-50">
-                                    {{ $savedSearch['label'] }}
+                                    <span @class([
+                                        'text-blue-600' => $this->savedSearch == $savedSearch['key'],
+                                    ])>
+                                        {{ $savedSearch['label'] }}
+                                    </span>
                                 </x-tables::button>
                             </div>
                         @endforeach
