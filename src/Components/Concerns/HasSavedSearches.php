@@ -41,6 +41,12 @@ trait HasSavedSearches
      */
     public function applySavedSearch($key)
     {
+        if ($this->savedSearch == $key) {
+            $this->savedSearch = null;
+
+            return;
+        }
+
         $this->savedSearch = $key;
     }
 
