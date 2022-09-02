@@ -169,7 +169,7 @@
                 <table class="lt-min-w-full lt-divide-y lt-divide-gray-200">
                     <thead class="lt-bg-white">
                         <tr>
-                            @if ($this->bulkActions->count())
+                            @if (count($this->bulkActions))
                                 <td class="lt-w-10 lt-py-3 lt-pl-4 lt-leading-none">
                                     <input type="checkbox"
                                            x-model="selectedAll"
@@ -209,33 +209,10 @@
                         </tr>
                     </thead>
 
-                    <tbody class="lt-hidden" wire:loading.class.remove="lt-hidden">
-                      @for($i = 0; $i <= $this->rows->count(); $i++)
-                        <tr class="lt-bg-white border-b border-gray-100" wire:key="loading_{{ $i }}">
-                          @if ($this->bulkActions->count())
-                            <x-tables::cell class="lt-text-right">
-                            </x-tables::cell>
-                          @endif
+                    <tables::support.loader row-count="{{ count($this->rows) }}" />
 
-                          @foreach ($this->columns as $column)
-                            <x-tables::cell wire:key="loading_column_{{ $column->field }}">
-                              <div class="lt-animate-pulse">
-                                <div class="lt-h-4 lt-bg-gray-200 lt-rounded-full"></div>
-                              </div>
-                            </x-tables::cell>
-                          @endforeach
-
-                          <x-tables::cell class="lt-text-right">
-                            <div class="lt-animate-pulse">
-                              <div class="lt-h-4 lt-bg-gray-200 lt-rounded-full"></div>
-                            </div>
-                          </x-tables::cell>
-                        </tr>
-                      @endfor
-                    </tbody>
-
-
-                    <tbody class="lt-relative" wire:loading.remove>
+                    <tbody class="lt-relative"
+                           wire:loading.remove>
                         @foreach ($this->rows as $row)
                             <tr class="lt-bg-white even:lt-bg-gray-50"
                                 wire:key="table_row_{{ $row->id }}">
