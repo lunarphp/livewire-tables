@@ -1,5 +1,5 @@
 <div x-data="{ isActive: false }"
-     class="relative">
+     class="lt-relative">
     <x-tables::button size="xs"
                       aria-label="Toggle Menu"
                       x-on:click="isActive = !isActive">
@@ -7,7 +7,7 @@
             Actions
         </span>
         <svg xmlns="http://www.w3.org/2000/svg"
-             class="w-4 h-4"
+             class="lt-w-4 lt-h-4"
              viewBox="0 0 20 20"
              fill="currentColor">
             <path fill-rule="evenodd"
@@ -22,7 +22,7 @@
          x-on:click.away="isActive = false"
          x-on:keydown.escape.window="isActive = false"
          role="menu"
-         class="absolute right-0 z-50 w-48 mt-2 text-left origin-top-right bg-white border border-gray-100 rounded-lg shadow-sdm">
+         class="lt-absolute lt-right-0 lt-z-50 lt-w-48 lt-mt-2 lt-text-left lt-origin-top-right lt-bg-white lt-border lt-border-gray-100 lt-rounded-lg">
         <div class="p-2">
             @foreach ($this->actions as $actionIndex => $action)
                 @php

@@ -2,14 +2,14 @@
     @if ($url)
         <a role="menuitem"
            href="{{ call_user_func($url, $record) }}"
-           class="block px-3 py-2 text-xs font-medium text-gray-600 rounded-md hover:bg-gray-50">
-            <span class="capitalize">
+           class="lt-text-xs lt-font-medium lt-rounded-md lt-text-gray-600 lt-block lt-px-3 lt-py-2 hover:lt-bg-gray-50">
+            <span class="lt-capitalize">
                 {{ $label }}
             </span>
         </a>
     @else
-        <p class="px-3 py-2 text-sm font-medium text-gray-600">
-            <span class="capitalize">
+        <p class="text-sm font-medium lt-text-gray-600 lt-px-3 lt-py-2">
+            <span class="lt-capitalize">
                 {{ $label }}
             </span>
         </p>

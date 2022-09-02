@@ -1,14 +1,16 @@
 <div>
     <label for="{{ $field }}"
-           class="block text-xs font-medium text-gray-700 capitalize">
+           class="lt-block lt-text-xs lt-font-medium lt-text-gray-700 lt-capitalize">
         {{ $heading }}
     </label>
 
     <select id="{{ $field }}"
             wire:model="filters.{{ $field }}"
-            class="mt-1 text-sm text-gray-700 border-gray-200 rounded-md focus:outline-none focus:ring focus:ring-blue-100 focus:border-blue-300 form-select">
+            class="lt-mt-1 lt-text-sm lt-text-gray-700 lt-border-gray-200 lt-rounded-md focus:lt-outline-none focus:lt-ring focus:lt-ring-blue-100 focus:lt-border-blue-300 lt-form-select">
         @foreach ($options as $option)
-            <option value="{{ $option['value'] }}">{{ $option['label'] }}</option>
+            <option value="{{ $option['value'] }}">
+                {{ $option['label'] }}
+            </option>
         @endforeach
     </select>
 </div>

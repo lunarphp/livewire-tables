@@ -1,23 +1,23 @@
-<th class="px-4 py-3 text-sm font-medium text-left text-gray-700">
+<th class="lt-px-4 lt-py-3 lt-text-sm lt-font-medium lt-text-left lt-text-gray-700">
     @unless($sortable)
-        <span class="capitalize">
+        <span class="lt-capitalize">
             {{ $heading }}
         </span>
     @else
-        <button class="flex items-center gap-0.5 group focus:outline-none focus:ring focus:ring-blue-100 p-2 -m-2"
+        <button class="lt-flex lt-items-center lt-gap-0.5 lt-group focus:lt-outline-none focus:lt-ring focus:lt-ring-blue-100 lt-p-2 lt--m-2"
                 wire:click="sort">
-            <span class="capitalize">
+            <span class="lt-capitalize">
                 {{ $heading }}
             </span>
 
             <span>
                 @if ($sortField == $field)
                     <span @class([
-                        'block',
-                        'rotate-0' => $sortDir === 'asc',
-                        'rotate-180' => $sortDir === 'desc',
+                        'lt-block',
+                        'lt-rotate-0' => $sortDir === 'asc',
+                        'lt-rotate-180' => $sortDir === 'desc',
                     ])>
-                        <svg class="w-3 h-3"
+                        <svg class="lt-w-3 lt-h-3"
                              fill="none"
                              stroke="currentColor"
                              viewBox="0 0 24 24"
@@ -29,8 +29,8 @@
                         </svg>
                     </span>
                 @else
-                    <span class="transition opacity-0 group-hover:opacity-100">
-                        <svg class="w-3 h-3"
+                    <span class="lt-transition lt-opacity-0 group-hover:lt-opacity-100">
+                        <svg class="lt-w-3 lt-h-3"
                              fill="none"
                              stroke="currentColor"
                              viewBox="0 0 24 24"

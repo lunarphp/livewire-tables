@@ -5,15 +5,15 @@
 
 <button
         {{ $attributes->merge([
-                'class' => 'button',
+                'class' => 'lt-button',
             ])->class([
-                'px-3 py-2 text-sm' => $size == 'default',
-                'px-3 py-2 text-xs' => $size == 'sm',
-                'px-2.5 py-2 text-xs' => $size == 'xs',
-                'button-gray' => $theme == 'default',
-                'button-success' => $theme == 'success',
-                'button-primary' => $theme == 'primary',
-                'button-danger' => $theme == 'danger',
+                'lt-px-3 lt-py-2 lt-text-sm' => $size == 'default',
+                'lt-px-3 lt-py-2 lt-text-xs' => $size == 'sm',
+                'lt-px-2.5 lt-py-2 lt-text-xs' => $size == 'xs',
+                'lt-button-gray' => $theme == 'default',
+                'lt-button-success' => $theme == 'success',
+                'lt-button-primary' => $theme == 'primary',
+                'lt-button-danger' => $theme == 'danger',
             ]) }}>
     {{ $slot }}
 </button>
