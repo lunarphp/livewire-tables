@@ -209,7 +209,33 @@
                         </tr>
                     </thead>
 
-                    <tbody class="lt-relative">
+                    <tbody class="lt-hidden" wire:loading.class.remove="lt-hidden">
+                      @for($i = 0; $i <= $this->rows->count(); $i++)
+                        <tr class="lt-bg-white border-b border-gray-100" wire:key="loading_{{ $i }}">
+                          @if ($this->bulkActions->count())
+                            <x-tables::cell class="lt-text-right">
+                            </x-tables::cell>
+                          @endif
+
+                          @foreach ($this->columns as $column)
+                            <x-tables::cell wire:key="loading_column_{{ $column->field }}">
+                              <div class="lt-animate-pulse">
+                                <div class="lt-h-4 lt-bg-gray-200 lt-rounded-full"></div>
+                              </div>
+                            </x-tables::cell>
+                          @endforeach
+
+                          <x-tables::cell class="lt-text-right">
+                            <div class="lt-animate-pulse">
+                              <div class="lt-h-4 lt-bg-gray-200 lt-rounded-full"></div>
+                            </div>
+                          </x-tables::cell>
+                        </tr>
+                      @endfor
+                    </tbody>
+
+
+                    <tbody class="lt-relative" wire:loading.remove>
                         @foreach ($this->rows as $row)
                             <tr class="lt-bg-white even:lt-bg-gray-50"
                                 wire:key="table_row_{{ $row->id }}">
