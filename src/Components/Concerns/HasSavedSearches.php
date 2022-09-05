@@ -41,6 +41,8 @@ trait HasSavedSearches
      */
     public function applySavedSearch($key)
     {
+        $this->filters = [];
+        $this->query = [];
         $this->savedSearch = $key;
     }
 
