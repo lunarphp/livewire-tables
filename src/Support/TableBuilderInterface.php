@@ -11,6 +11,34 @@ use Illuminate\Support\Collection;
 interface TableBuilderInterface
 {
     /**
+     * Apply the sort field and direction to the builder.
+     *
+     * @param string $sortField
+     * @param string $sortDir
+     *
+     * @return self
+     */
+    public function sort($sortField, $sortDir = 'desc'): self;
+
+    /**
+     * Set the search term on the table builder.
+     *
+     * @param string $searchTerm
+     *
+     * @return self
+     */
+    public function searchTerm($searchTerm): self;
+
+    /**
+     * Set the results limit on the table builder.
+     *
+     * @param int $limit
+     *
+     * @return self
+     */
+    public function perPage(int $perPage): self;
+
+    /**
      * Add a column to the table builder.
      *
      * @param BaseColumn $column
@@ -95,12 +123,7 @@ interface TableBuilderInterface
     /**
      * Get the data from the table builder.
      *
-     * @param string|null $searchTerm
-     * @param Array $filters
-     * @param string $sortField
-     * @param string $sortDir
-     *
-     * @return mixed
+     * @return iterable
      */
-    public function getData($searchTerm = null, $filters = [], $sortField = 'placed_at', $sortDir = 'desc');
+    public function getData(): iterable;
 }

@@ -46,6 +46,41 @@ class TableBuilder implements TableBuilderInterface
     public Collection $bulkActions;
 
     /**
+     * The search term for the table.
+     *
+     * @var string|null
+     */
+    public ?string $searchTerm = null;
+
+    /**
+     * The number of records per page.
+     *
+     * @var int
+     */
+    public int $perPage = 50;
+
+    /**
+     * The field to sort using.
+     *
+     * @var string|null
+     */
+    public ?string $sortField = 'created_at';
+
+    /**
+     * The sort direction.
+     *
+     * @var string|null
+     */
+    public ?string $sortDir = 'desc';
+
+    /**
+     * The filters from the query string
+     *
+     * @var array
+     */
+    public array $queryStringFilters = [];
+
+    /**
      * Initialise the TableBuilder
      */
     public function __construct()
@@ -55,6 +90,35 @@ class TableBuilder implements TableBuilderInterface
         $this->filters = collect();
         $this->actions = collect();
         $this->bulkActions = collect();
+    }
+
+    public function perPage(int $perPage): self
+    {
+        $this->perPage = $perPage;
+
+        return $this;
+    }
+
+    public function queryStringFilters($filters)
+    {
+        $this->queryStringFilters = $filters;
+
+        return $this;
+    }
+
+    public function searchTerm($searchTerm): self
+    {
+        $this->searchTerm = $searchTerm;
+
+        return $this;
+    }
+
+    public function sort($sortField, $sortDir = 'desc'): self
+    {
+        $this->sortField = $sortField;
+        $this->sortDir = $sortDir;
+
+        return $this;
     }
 
     public function addColumn(BaseColumn $column): self
@@ -119,7 +183,7 @@ class TableBuilder implements TableBuilderInterface
         return $this->bulkActions;
     }
 
-    public function getData($searchTerm = null, $filters = [], $sortField = 'placed_at', $sortDir = 'desc')
+    public function getData(): iterable
     {
         return collect();
     }

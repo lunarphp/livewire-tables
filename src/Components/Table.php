@@ -58,9 +58,17 @@ class Table extends Component
     public array $filters = [];
 
     /**
+     * The number of records per page.
+     *
+     * @var int
+     */
+    public int $perPage = 50;
+
+    /**
      * {@inheritDoc}
      */
     protected $queryString = [
+        'perPage',
         'sortField',
         'sortDir',
         'query',
