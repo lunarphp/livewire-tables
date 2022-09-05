@@ -1,3 +1,8 @@
-let mix = require('laravel-mix');
+let mix = require('laravel-mix')
 
-mix.js('resources/js/laravel-tables.js', 'dist').setPublicPath('dist').version();
+mix
+  .postCss('resources/css/app.css', 'livewire-tables/app.css', [
+    require('tailwindcss'),
+  ])
+  .setPublicPath('dist')
+  .version()

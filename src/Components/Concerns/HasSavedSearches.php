@@ -49,6 +49,12 @@ trait HasSavedSearches
         $this->filters = [];
         $this->query = null;
 
+        if ($this->savedSearch == $key) {
+            $this->savedSearch = null;
+
+            return;
+        }
+        
         $this->savedSearch = $key;
     }
 

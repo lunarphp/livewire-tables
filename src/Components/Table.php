@@ -185,6 +185,16 @@ class Table extends Component
     }
 
     /**
+     * Return the number of active filters.
+     *
+     * @return integer
+     */
+    public function getActiveFiltersCountProperty()
+    {
+        return collect($this->filters)->filter()->count();
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function render()
