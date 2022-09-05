@@ -20,6 +20,11 @@ trait HasSavedSearches
      */
     public ?string $savedSearch = null;
 
+    /**
+     * The new name for the saved search.
+     *
+     * @var string
+     */
     public ?string $savedSearchName = null;
 
     /**
@@ -41,21 +46,44 @@ trait HasSavedSearches
      */
     public function applySavedSearch($key)
     {
+        $this->filters = [];
+        $this->query = null;
+
         $this->savedSearch = $key;
     }
 
+    /**
+     * Save the current search filters and query
+     *
+     * @return void
+     */
     public function saveSearch()
     {
         //
     }
 
-    public function getHasSearchAppliedProperty()
+    /**
+     * Reset the saved search state to default.
+     *
+     * @return void
+     */
+    public function resetSavedSearch()
     {
-        $applied = false;
+        $this->savedSearch = false;
+    }
 
+    /**
+     * Return whether the search state has filters or search applied.
+     *
+     * @return bool
+     */
+    public function getHasSearchAppliedProperty(): bool
+    {
         if ($this->query) {
             return true;
         }
+
+        $applied = false;
 
         foreach ($this->filters as $filter) {
             if ($filter) {

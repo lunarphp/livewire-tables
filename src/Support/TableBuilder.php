@@ -57,13 +57,6 @@ class TableBuilder implements TableBuilderInterface
         $this->bulkActions = collect();
     }
 
-    /**
-     * Add a column to the table builder.
-     *
-     * @param BaseColumn $column
-     *
-     * @return void
-     */
     public function addColumn(BaseColumn $column): self
     {
         $this->columns->prepend($column);
@@ -85,11 +78,6 @@ class TableBuilder implements TableBuilderInterface
         return $this;
     }
 
-    /**
-     * Return the available columns.
-     *
-     * @return Collection
-     */
     public function getColumns(): Collection
     {
         return $this->baseColumns->merge(
@@ -97,13 +85,6 @@ class TableBuilder implements TableBuilderInterface
         );
     }
 
-    /**
-     * Add a filter to the table.
-     *
-     * @param BaseFilter $filter
-     *
-     * @return self
-     */
     public function addFilter(BaseFilter $filter): self
     {
         $this->filters->push($filter);
@@ -111,59 +92,35 @@ class TableBuilder implements TableBuilderInterface
         return $this;
     }
 
-    /**
-     * Return the available filters.
-     *
-     * @return Collection
-     */
     public function getFilters(): Collection
     {
         return $this->filters;
     }
 
-    /**
-     * Add an action to the builder.
-     *
-     * @param Action $action
-     *
-     * @return self
-     */
     public function addAction(Action $action): self
     {
         $this->actions->push($action);
         return $this;
     }
 
-    /**
-     * Return the available actions.
-     *
-     * @return Collection
-     */
     public function getActions(): Collection
     {
         return $this->actions;
     }
 
-    /**
-     * Add a bulk action to the table builder.
-     *
-     * @param BulkAction $bulkAction
-     *
-     * @return self
-     */
     public function addBulkAction(BulkAction $bulkAction): self
     {
         $this->bulkActions->push($bulkAction);
         return $this;
     }
 
-    /**
-     * Return the available bulk actions
-     *
-     * @return Collection
-     */
     public function getBulkActions(): Collection
     {
         return $this->bulkActions;
+    }
+
+    public function getData($searchTerm = null, $filters = [], $sortField = 'placed_at', $sortDir = 'desc')
+    {
+        return collect();
     }
 }
