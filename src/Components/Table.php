@@ -115,6 +115,16 @@ class Table extends Component
     }
 
     /**
+     * Return the table data.
+     *
+     * @return mixed
+     */
+    public function getData()
+    {
+        return collect();
+    }
+
+    /**
      * Return the table manifest.
      *
      * @return TableManifest
