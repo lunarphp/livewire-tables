@@ -89,9 +89,9 @@
                         <x-tables::button x-on:click="showFilters = !showFilters">
                             Filters
 
-                            @if (count($this->filters))
+                            @if ($this->activeFiltersCount)
                                 <sup class="lt-top-0">
-                                    ({{ count($this->filters) }})
+                                    ({{ $this->activeFiltersCount }})
                                 </sup>
                             @endif
                         </x-tables::button>
@@ -106,7 +106,7 @@
                                 <x-tables::button size="xs"
                                                   aria-label="Delete Saved Search"
                                                   wire:click="deleteSavedSearch({{ $savedSearch['key'] }})"
-                                                  class="!border-0 !rounded-r-none focus:!lt-ring-transparent focus:lt-bg-gray-50">
+                                                  class="!lt-border-0 !lt-rounded-r-none focus:!lt-ring-transparent focus:lt-bg-gray-50">
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                          fill="none"
                                          viewBox="0 0 24 24"
@@ -123,7 +123,23 @@
                                                   aria-label="Apply Saved Search"
                                                   wire:click="applySavedSearch({{ $savedSearch['key'] }})"
                                                   class="!lt-border-y-0 !lt-border-r-0 !lt-rounded-l-none focus:!lt-ring-transparent focus:lt-bg-gray-50">
-                                    {{ $savedSearch['label'] }}
+                                    <span @class([
+                                        'lt-inline-flex lt-items-center lt-gap-2',
+                                        'lt-text-blue-600' => $this->savedSearch == $savedSearch['key'],
+                                    ])>
+                                        {{ $savedSearch['label'] }}
+
+                                        @if ($this->savedSearch == $savedSearch['key'])
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                 viewBox="0 0 20 20"
+                                                 fill="currentColor"
+                                                 class="lt-w-3 lt-h-3">
+                                                <path fill-rule="evenodd"
+                                                      d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                                                      clip-rule="evenodd" />
+                                            </svg>
+                                        @endif
+                                    </span>
                                 </x-tables::button>
                             </div>
                         @endforeach
@@ -169,7 +185,7 @@
                 <table class="lt-min-w-full lt-divide-y lt-divide-gray-200">
                     <thead class="lt-bg-white">
                         <tr>
-                            @if ($this->bulkActions->count())
+                            @if (count($this->bulkActions))
                                 <td class="lt-w-10 lt-py-3 lt-pl-4 lt-leading-none">
                                     <input type="checkbox"
                                            x-model="selectedAll"
@@ -209,33 +225,35 @@
                         </tr>
                     </thead>
 
-                    <tbody class="lt-hidden" wire:loading.class.remove="lt-hidden">
-                      @for($i = 0; $i <= $this->rows->count(); $i++)
-                        <tr class="lt-bg-white border-b border-gray-100" wire:key="loading_{{ $i }}">
-                          @if ($this->bulkActions->count())
-                            <x-tables::cell class="lt-text-right">
-                            </x-tables::cell>
-                          @endif
+                    <tbody class="lt-hidden"
+                           wire:loading.delay.class.remove="lt-hidden">
+                        @foreach (range(1, count($this->rows)) as $id)
+                            <tr class="lt-border-b lt-border-gray-100 lt-bg-white"
+                                wire:key="loading_{{ $id }}">
+                                @if (count($this->bulkActions))
+                                    <x-tables::cell class="lt-text-right">
+                                    </x-tables::cell>
+                                @endif
 
-                          @foreach ($this->columns as $column)
-                            <x-tables::cell wire:key="loading_column_{{ $column->field }}">
-                              <div class="lt-animate-pulse">
-                                <div class="lt-h-4 lt-bg-gray-200 lt-rounded-full"></div>
-                              </div>
-                            </x-tables::cell>
-                          @endforeach
+                                @foreach ($this->columns as $column)
+                                    <x-tables::cell wire:key="loading_column_{{ $column->field }}">
+                                        <div class="lt-animate-pulse">
+                                            <div class="lt-h-4 lt-bg-gray-200 lt-rounded-full"></div>
+                                        </div>
+                                    </x-tables::cell>
+                                @endforeach
 
-                          <x-tables::cell class="lt-text-right">
-                            <div class="lt-animate-pulse">
-                              <div class="lt-h-4 lt-bg-gray-200 lt-rounded-full"></div>
-                            </div>
-                          </x-tables::cell>
-                        </tr>
-                      @endfor
+                                <x-tables::cell class="lt-text-right">
+                                    <div class="lt-animate-pulse">
+                                        <div class="lt-h-4 lt-bg-gray-200 lt-rounded-full"></div>
+                                    </div>
+                                </x-tables::cell>
+                            </tr>
+                        @endforeach
                     </tbody>
 
-
-                    <tbody class="lt-relative" wire:loading.remove>
+                    <tbody class="lt-relative"
+                           wire:loading.delay.remove>
                         @foreach ($this->rows as $row)
                             <tr class="lt-bg-white even:lt-bg-gray-50"
                                 wire:key="table_row_{{ $row->id }}">
