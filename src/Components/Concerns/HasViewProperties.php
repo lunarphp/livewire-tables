@@ -26,6 +26,9 @@ trait HasViewProperties
 
     public function getHeading()
     {
+        if ($this->heading === false) {
+            return null;
+        }
         return $this->heading ?: $this->field;
     }
 
