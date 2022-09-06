@@ -34,7 +34,14 @@ class Table extends Component
      *
      * @var bool
      */
-    public $searchable = false;
+    public bool $searchable = false;
+
+    /**
+     * If the table should show filters
+     *
+     * @var bool
+     */
+    public bool $filterable = true;
 
     /**
      * The search query

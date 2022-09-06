@@ -38,6 +38,7 @@
     </div>
 
     <div class="lt-overflow-hidden lt-border lt-border-gray-200 lt-rounded-lg">
+
         <div x-data="{
             showFilters: false,
             selected: @entangle('selected').defer,
@@ -47,6 +48,7 @@
                  selected = isChecked ? {{ json_encode($this->rows->pluck('id')->toArray()) }} : []
              })"
              class="lt-w-full lt-divide-y lt-divide-gray-200">
+            @if($this->searchable || $this->filterable)
             <div class="lt-p-4">
                 <div class="lt-flex lt-items-center lt-gap-2 sm:lt-gap-4">
                     @if ($this->searchable)
@@ -85,7 +87,7 @@
                         </x-tables::button>
                     @endif
 
-                    @if (count($this->tableFilters))
+                    @if (count($this->tableFilters) && $this->filterable)
                         <x-tables::button x-on:click="showFilters = !showFilters">
                             Filters
 
@@ -98,7 +100,7 @@
                     @endif
                 </div>
 
-                @if (count($this->savedSearches))
+                @if (count($this->savedSearches) && $this->canSaveSearches)
                     <div class="lt-flex lt-items-center lt-gap-4 lt-mt-2">
                         @foreach ($this->savedSearches as $savedSearch)
                             <div
@@ -146,6 +148,7 @@
                     </div>
                 @endif
             </div>
+            @endif
 
             <div x-cloak
                  x-show="showFilters || selected.length"
@@ -243,11 +246,13 @@
                                     </x-tables::cell>
                                 @endforeach
 
-                                <x-tables::cell class="lt-text-right">
-                                    <div class="lt-animate-pulse">
-                                        <div class="lt-h-4 lt-bg-gray-200 lt-rounded-full"></div>
-                                    </div>
-                                </x-tables::cell>
+                                @if(count($this->actions))
+                                  <x-tables::cell class="lt-text-right">
+                                      <div class="lt-animate-pulse">
+                                          <div class="lt-h-4 lt-bg-gray-200 lt-rounded-full"></div>
+                                      </div>
+                                  </x-tables::cell>
+                                @endif
                             </tr>
                         @endforeach
                     </tbody>
@@ -280,10 +285,12 @@
                                     </x-tables::cell>
                                 @endforeach
 
-                                <x-tables::cell class="lt-text-right">
-                                    <x-tables::action-cell :actions="$this->actions"
-                                                           :record="$row" />
-                                </x-tables::cell>
+                                @if(count($this->actions))
+                                  <x-tables::cell class="lt-text-right">
+                                      <x-tables::action-cell :actions="$this->actions"
+                                                             :record="$row" />
+                                  </x-tables::cell>
+                                @endif
                             </tr>
                         @endforeach
                     </tbody>
