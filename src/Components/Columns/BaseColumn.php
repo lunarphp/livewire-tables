@@ -4,16 +4,19 @@ namespace GetCandy\LivewireTables\Components\Columns;
 
 use Closure;
 use GetCandy\LivewireTables\Components\Concerns\HasClosure;
+use GetCandy\LivewireTables\Components\Concerns\HasEloquentRelationships;
 use GetCandy\LivewireTables\Components\Concerns\HasLivewireComponent;
 use GetCandy\LivewireTables\Components\Concerns\HasViewComponent;
 use GetCandy\LivewireTables\Components\Concerns\HasViewProperties;
 use Livewire\Component;
+use Illuminate\Support\Str;
 
 abstract class BaseColumn extends Component
 {
     use HasLivewireComponent,
         HasClosure,
         HasViewComponent,
+        HasEloquentRelationships,
         HasViewProperties;
 
     /**
@@ -90,6 +93,13 @@ abstract class BaseColumn extends Component
     {
         if ($this->closure) {
             return call_user_func($this->closure, $this->record);
+        }
+
+        $relationName = $this->getRelationshipName();
+        $relationColumn = $this->getRelationshipColumn();
+
+        if ($relationName != $relationColumn) {
+            return $this->record->{$relationName}?->{$relationColumn};
         }
 
         return $this->record->getAttribute(
