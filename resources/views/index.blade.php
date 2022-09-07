@@ -39,7 +39,7 @@
 
     <div class="lt-overflow-hidden lt-border lt-border-gray-200 lt-rounded-lg">
         <div x-data="{
-            showFilters: false,
+            showFilters: true,
             selected: @entangle('selected').defer,
             selectedAll: false,
         }"

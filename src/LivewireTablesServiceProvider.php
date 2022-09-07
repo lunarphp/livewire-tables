@@ -19,6 +19,8 @@ class LivewireTablesServiceProvider extends ServiceProvider
         $this->app->bind(TableBuilderInterface::class, function ($app) {
            return $app->make(TableBuilder::class);
         });
+
+        $this->mergeConfigFrom(__DIR__.'/../config/livewire-tables.php', "livewire-tables");
     }
 
     public function boot()

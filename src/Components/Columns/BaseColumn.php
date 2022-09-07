@@ -6,6 +6,7 @@ use Closure;
 use GetCandy\LivewireTables\Components\Concerns\HasClosure;
 use GetCandy\LivewireTables\Components\Concerns\HasEloquentRelationships;
 use GetCandy\LivewireTables\Components\Concerns\HasLivewireComponent;
+use GetCandy\LivewireTables\Components\Concerns\HasTranslations;
 use GetCandy\LivewireTables\Components\Concerns\HasViewComponent;
 use GetCandy\LivewireTables\Components\Concerns\HasViewProperties;
 use Livewire\Component;
@@ -17,6 +18,7 @@ abstract class BaseColumn extends Component
         HasClosure,
         HasViewComponent,
         HasEloquentRelationships,
+        HasTranslations,
         HasViewProperties;
 
     /**
@@ -100,6 +102,10 @@ abstract class BaseColumn extends Component
 
         if ($relationName != $relationColumn) {
             return $this->record->{$relationName}?->{$relationColumn};
+        }
+
+        if (property_exists($this->record, $this->field)) {
+            return $this->record->{$this->field};
         }
 
         return $this->record->getAttribute(
