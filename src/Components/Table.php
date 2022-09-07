@@ -22,6 +22,8 @@ class Table extends Component
      */
     protected $tableBuilderBinding = TableBuilderInterface::class;
 
+    public ?string $poll = null;
+
     /**
      * Whether this table should use pagination.
      *

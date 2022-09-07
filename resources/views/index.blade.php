@@ -185,6 +185,10 @@
                 </div>
             @endif
 
+            @if($poll)
+                <div wire:poll.{{ $poll }}></div>
+            @endif
+
             <div class="lt-overflow-x-auto">
                 <table class="lt-min-w-full lt-divide-y lt-divide-gray-200">
                     <thead class="lt-bg-white">
