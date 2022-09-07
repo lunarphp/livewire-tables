@@ -14,8 +14,7 @@ trait HasViewComponent
     /**
      * Set the view component.
      *
-     * @param string $viewComponent
-     *
+     * @param  string  $viewComponent
      * @return self
      */
     public function viewComponent($viewComponent): self
@@ -32,7 +31,7 @@ trait HasViewComponent
      */
     public function isViewComponent(): bool
     {
-        return !!$this->viewComponent;
+        return (bool) $this->viewComponent;
     }
 
     /**

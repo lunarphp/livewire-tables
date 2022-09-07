@@ -44,6 +44,7 @@ class Head extends Component
             $this->sortDir = null;
             $this->sortField = null;
             $this->emitUp('sort', null);
+
             return;
         }
 

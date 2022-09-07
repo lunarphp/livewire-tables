@@ -13,9 +13,9 @@ class BadgeColumn extends BaseColumn
     public function states(Closure $states)
     {
         $this->states = $states;
+
         return $this;
     }
-
 
     /**
      * {@inheritDoc}

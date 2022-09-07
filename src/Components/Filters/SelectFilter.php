@@ -33,7 +33,7 @@ class SelectFilter extends BaseFilter
         }
 
         $this->options = $options->map(function ($option, $key) {
-            if (!is_array($option)) {
+            if (! is_array($option)) {
                 return [
                     'label' => $option,
                     'value' => $key,
@@ -45,6 +45,7 @@ class SelectFilter extends BaseFilter
                 'value' => $option['value'] ?? $option['label'],
             ];
         })->values();
+
         return $this;
     }
 }

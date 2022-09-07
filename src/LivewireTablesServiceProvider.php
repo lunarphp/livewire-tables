@@ -20,7 +20,7 @@ class LivewireTablesServiceProvider extends ServiceProvider
            return $app->make(TableBuilder::class);
         });
 
-        $this->mergeConfigFrom(__DIR__.'/../config/livewire-tables.php', "livewire-tables");
+        $this->mergeConfigFrom(__DIR__.'/../config/livewire-tables.php', 'livewire-tables');
     }
 
     public function boot()
@@ -51,7 +51,7 @@ class LivewireTablesServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'tables');
 
         $this->publishes([
-            __DIR__ . '/../resources/views' => resource_path('views/vendor/getcandy'),
+            __DIR__.'/../resources/views' => resource_path('views/vendor/getcandy'),
         ], 'getcandy.livewiretables.components');
 
         $this->publishes([

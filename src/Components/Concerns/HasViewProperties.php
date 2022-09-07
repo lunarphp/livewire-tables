@@ -29,6 +29,7 @@ trait HasViewProperties
         if ($this->heading === false) {
             return null;
         }
+
         return $this->heading ?: $this->translate($this->field, 'headings');
     }
 

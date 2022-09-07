@@ -9,8 +9,8 @@ use GetCandy\LivewireTables\Components\Concerns\HasLivewireComponent;
 use GetCandy\LivewireTables\Components\Concerns\HasTranslations;
 use GetCandy\LivewireTables\Components\Concerns\HasViewComponent;
 use GetCandy\LivewireTables\Components\Concerns\HasViewProperties;
-use Livewire\Component;
 use Illuminate\Support\Str;
+use Livewire\Component;
 
 abstract class BaseColumn extends Component
 {
@@ -52,21 +52,20 @@ abstract class BaseColumn extends Component
     /**
      * Set the property value for sortable.
      *
-     * @param bool $sortable
-     *
+     * @param  bool  $sortable
      * @return self
      */
     public function sortable(bool $sortable = true): self
     {
         $this->sortable = $sortable;
+
         return $this;
     }
 
     /**
      * Set the field property.
      *
-     * @param string $field
-     *
+     * @param  string  $field
      * @return void
      */
     public function field($field)
@@ -116,8 +115,7 @@ abstract class BaseColumn extends Component
     /**
      * Set the record property.
      *
-     * @param mixed $record
-     *
+     * @param  mixed  $record
      * @return self
      */
     public function record($record): self

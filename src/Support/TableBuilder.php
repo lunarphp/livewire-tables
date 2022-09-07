@@ -164,6 +164,7 @@ class TableBuilder implements TableBuilderInterface
     public function addAction(Action $action): self
     {
         $this->actions->push($action);
+
         return $this;
     }
 
@@ -175,6 +176,7 @@ class TableBuilder implements TableBuilderInterface
     public function addBulkAction(BulkAction $bulkAction): self
     {
         $this->bulkActions->push($bulkAction);
+
         return $this;
     }
 

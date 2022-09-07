@@ -5,8 +5,8 @@ namespace GetCandy\LivewireTables\Components;
 use GetCandy\LivewireTables\Components\Concerns\HasSavedSearches;
 use GetCandy\LivewireTables\Components\Concerns\HasSortableColumns;
 use GetCandy\LivewireTables\Support\TableBuilderInterface;
-use Livewire\Component;
 use Illuminate\Support\Collection;
+use Livewire\Component;
 use Livewire\WithPagination;
 
 class Table extends Component
@@ -204,7 +204,7 @@ class Table extends Component
     /**
      * Return the number of active filters.
      *
-     * @return integer
+     * @return int
      */
     public function getActiveFiltersCountProperty()
     {

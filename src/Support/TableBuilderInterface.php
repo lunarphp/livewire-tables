@@ -13,9 +13,8 @@ interface TableBuilderInterface
     /**
      * Apply the sort field and direction to the builder.
      *
-     * @param string $sortField
-     * @param string $sortDir
-     *
+     * @param  string  $sortField
+     * @param  string  $sortDir
      * @return self
      */
     public function sort($sortField, $sortDir = 'desc'): self;
@@ -23,8 +22,7 @@ interface TableBuilderInterface
     /**
      * Set the search term on the table builder.
      *
-     * @param string $searchTerm
-     *
+     * @param  string  $searchTerm
      * @return self
      */
     public function searchTerm($searchTerm): self;
@@ -32,8 +30,7 @@ interface TableBuilderInterface
     /**
      * Set the results limit on the table builder.
      *
-     * @param int $limit
-     *
+     * @param  int  $limit
      * @return self
      */
     public function perPage(int $perPage): self;
@@ -41,8 +38,7 @@ interface TableBuilderInterface
     /**
      * Add a column to the table builder.
      *
-     * @param BaseColumn $column
-     *
+     * @param  BaseColumn  $column
      * @return self
      */
     public function addColumn(BaseColumn $column): self;
@@ -50,8 +46,7 @@ interface TableBuilderInterface
     /**
      * Add multiple columns to the table builder.
      *
-     * @param iterable $columns
-     *
+     * @param  iterable  $columns
      * @return self
      */
     public function addColumns(iterable $columns): self;
@@ -59,8 +54,7 @@ interface TableBuilderInterface
     /**
      * Set the base columns that the table builder needs.
      *
-     * @param iterable $columns
-     *
+     * @param  iterable  $columns
      * @return self
      */
     public function baseColumns(iterable $columns): self;
@@ -75,8 +69,7 @@ interface TableBuilderInterface
     /**
      * Add a filter to the table builder.
      *
-     * @param BaseFilter $filter
-     *
+     * @param  BaseFilter  $filter
      * @return self
      */
     public function addFilter(BaseFilter $filter): self;
@@ -91,8 +84,7 @@ interface TableBuilderInterface
     /**
      * Add an action to the table builder.
      *
-     * @param Action $action
-     *
+     * @param  Action  $action
      * @return self
      */
     public function addAction(Action $action): self;
@@ -107,8 +99,7 @@ interface TableBuilderInterface
     /**
      * Add a bulk action to the table builder.
      *
-     * @param BulkAction $bulkAction
-     *
+     * @param  BulkAction  $bulkAction
      * @return self
      */
     public function addBulkAction(BulkAction $bulkAction): self;

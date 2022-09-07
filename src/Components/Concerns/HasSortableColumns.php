@@ -23,8 +23,7 @@ trait HasSortableColumns
     /**
      * Apply the sorting to the query string.
      *
-     * @param array|null $event
-     *
+     * @param  array|null  $event
      * @return void
      */
     public function sort($event)

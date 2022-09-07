@@ -14,8 +14,7 @@ trait HasLivewireComponent
     /**
      * Set the livewire component to render.
      *
-     * @param string $livewire
-     *
+     * @param  string  $livewire
      * @return self
      */
     public function livewire($livewire): self
@@ -32,7 +31,7 @@ trait HasLivewireComponent
      */
     public function getLivewire(): string
     {
-        if (!class_exists($this->livewire)) {
+        if (! class_exists($this->livewire)) {
             return $this->livewire;
         }
 
@@ -46,6 +45,6 @@ trait HasLivewireComponent
      */
     public function isLivewire(): bool
     {
-        return !!$this->livewire;
+        return (bool) $this->livewire;
     }
 }

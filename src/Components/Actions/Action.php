@@ -7,8 +7,8 @@ use GetCandy\LivewireTables\Components\Concerns\HasClosure;
 use GetCandy\LivewireTables\Components\Concerns\HasLivewireComponent;
 use GetCandy\LivewireTables\Components\Concerns\HasViewComponent;
 use GetCandy\LivewireTables\Components\Concerns\HasViewProperties;
-use Livewire\Component;
 use Illuminate\Contracts\Support\Htmlable;
+use Livewire\Component;
 
 class Action extends Component implements Htmlable
 {
@@ -36,19 +36,20 @@ class Action extends Component implements Htmlable
     /**
      * Set the label on the action.
      *
-     * @param string $label
-     *
+     * @param  string  $label
      * @return self
      */
     public function label($label): self
     {
         $this->label = $label;
+
         return $this;
     }
 
     public function record($record): self
     {
         $this->record = $record;
+
         return $this;
     }
 

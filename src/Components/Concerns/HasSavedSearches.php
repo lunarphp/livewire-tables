@@ -40,8 +40,7 @@ trait HasSavedSearches
     /**
      * Apply the saved search to the table.
      *
-     * @param string $key
-     *
+     * @param  string  $key
      * @return void
      */
     public function applySavedSearch($key)
@@ -54,7 +53,7 @@ trait HasSavedSearches
 
             return;
         }
-        
+
         $this->savedSearch = $key;
     }
 

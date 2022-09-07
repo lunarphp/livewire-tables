@@ -5,8 +5,8 @@ namespace GetCandy\LivewireTables\Components\Filters;
 use Closure;
 use GetCandy\LivewireTables\Components\Concerns\HasTranslations;
 use GetCandy\LivewireTables\Components\Concerns\HasViewProperties;
-use Livewire\Component;
 use Illuminate\Contracts\Support\Htmlable;
+use Livewire\Component;
 
 abstract class BaseFilter extends Component implements Htmlable
 {
