@@ -1,13 +1,13 @@
 <?php
 
-namespace GetCandy\LivewireTables;
+namespace Lunar\LivewireTables;
 
-use GetCandy\LivewireTables\Components\Columns\TextColumn;
-use GetCandy\LivewireTables\Components\Filters\SelectFilter;
-use GetCandy\LivewireTables\Components\Head;
-use GetCandy\LivewireTables\Components\Table;
-use GetCandy\LivewireTables\Support\TableBuilder;
-use GetCandy\LivewireTables\Support\TableBuilderInterface;
+use Lunar\LivewireTables\Components\Columns\TextColumn;
+use Lunar\LivewireTables\Components\Filters\SelectFilter;
+use Lunar\LivewireTables\Components\Head;
+use Lunar\LivewireTables\Components\Table;
+use Lunar\LivewireTables\Support\TableBuilder;
+use Lunar\LivewireTables\Support\TableBuilderInterface;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
@@ -36,12 +36,12 @@ class LivewireTablesServiceProvider extends ServiceProvider
             Livewire::component((new $component)->getName(), $component);
         }
 
-        Blade::componentNamespace('GetCandy\\LivewireTables\\View', 'tables');
+        Blade::componentNamespace('Lunar\\LivewireTables\\View', 'tables');
 
         Blade::directive('livewireTableStyles', function () {
             $manifest = json_decode(file_get_contents(__DIR__.'/../dist/mix-manifest.json'), true);
 
-            $cssUrl = asset('/vendor/getcandy'.$manifest['/livewire-tables/app.css']);
+            $cssUrl = asset('/vendor/lunar'.$manifest['/livewire-tables/app.css']);
 
             return <<<EOT
                 <link rel="stylesheet" href="{$cssUrl}" />
@@ -51,11 +51,11 @@ class LivewireTablesServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'tables');
 
         $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/vendor/getcandy'),
-        ], 'getcandy.livewiretables.components');
+            __DIR__.'/../resources/views' => resource_path('views/vendor/lunar'),
+        ], 'lunar.livewiretables.components');
 
         $this->publishes([
-            __DIR__.'/../dist' => public_path('vendor/getcandy'),
-        ], 'getcandy.livewiretables.public');
+            __DIR__.'/../dist' => public_path('vendor/lunar'),
+        ], 'lunar.livewiretables.public');
     }
 }
