@@ -1,6 +1,6 @@
 <?php
 
-namespace GetCandy\LivewireTables\Tests;
+namespace Lunar\LivewireTables\Tests;
 
 class TestCase extends \Orchestra\Testbench\TestCase
 {
