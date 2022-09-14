@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://lunarphp@github.com/lunarphp/livewire-tables",
-  "author": "Alec Ritson <alec@lunarphp.io>",
+  "author": "LunarPHP <hello@lunarphp.io>",
   "license": "MIT",
   "scripts": {
     "dev": "npm run development",
