@@ -2,12 +2,12 @@
 
 namespace Lunar\LivewireTables\Components;
 
-use Lunar\LivewireTables\Components\Concerns\HasSavedSearches;
-use Lunar\LivewireTables\Components\Concerns\HasSortableColumns;
-use Lunar\LivewireTables\Support\TableBuilderInterface;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Lunar\LivewireTables\Components\Concerns\HasSavedSearches;
+use Lunar\LivewireTables\Components\Concerns\HasSortableColumns;
+use Lunar\LivewireTables\Support\TableBuilderInterface;
 
 class Table extends Component
 {
@@ -29,7 +29,7 @@ class Table extends Component
      *
      * @var bool
      */
-    public $hasPagination = true;
+    public $hasPagination = false;
 
     /**
      * Whether this table is searchable.
@@ -92,6 +92,7 @@ class Table extends Component
     {
         return [
             'sort',
+            'bulkAction.reset' => 'resetBulkActions',
         ];
     }
 
@@ -119,6 +120,26 @@ class Table extends Component
     public function build()
     {
         //
+    }
+
+    public function updatedQuery()
+    {
+        $this->resetSavedSearch();
+    }
+
+    public function updatedFilters()
+    {
+        $this->resetSavedSearch();
+    }
+
+    public function updatedSelected($value)
+    {
+        $this->emit('table.selectedRows', $value);
+    }
+
+    public function resetBulkActions()
+    {
+        $this->selected = [];
     }
 
     /**
@@ -209,6 +230,16 @@ class Table extends Component
     public function getActiveFiltersCountProperty()
     {
         return collect($this->filters)->filter()->count();
+    }
+
+    /**
+     * Return the empty message.
+     *
+     * @return string|null
+     */
+    public function getEmptyMessageProperty()
+    {
+        return $this->tableBuilder->emptyMessage;
     }
 
     /**

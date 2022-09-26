@@ -2,15 +2,16 @@
 
 namespace Lunar\LivewireTables;
 
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
+use Lunar\LivewireTables\Components\Actions\BulkAction;
 use Lunar\LivewireTables\Components\Columns\TextColumn;
 use Lunar\LivewireTables\Components\Filters\SelectFilter;
 use Lunar\LivewireTables\Components\Head;
 use Lunar\LivewireTables\Components\Table;
 use Lunar\LivewireTables\Support\TableBuilder;
 use Lunar\LivewireTables\Support\TableBuilderInterface;
-use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\ServiceProvider;
-use Livewire\Livewire;
 
 class LivewireTablesServiceProvider extends ServiceProvider
 {
@@ -30,6 +31,7 @@ class LivewireTablesServiceProvider extends ServiceProvider
             TextColumn::class,
             Head::class,
             SelectFilter::class,
+            BulkAction::class,
         ];
 
         foreach ($components as $component) {

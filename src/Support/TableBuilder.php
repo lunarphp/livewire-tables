@@ -2,11 +2,11 @@
 
 namespace Lunar\LivewireTables\Support;
 
+use Illuminate\Support\Collection;
 use Lunar\LivewireTables\Components\Actions\Action;
 use Lunar\LivewireTables\Components\Actions\BulkAction;
 use Lunar\LivewireTables\Components\Columns\BaseColumn;
 use Lunar\LivewireTables\Components\Filters\BaseFilter;
-use Illuminate\Support\Collection;
 
 class TableBuilder implements TableBuilderInterface
 {
@@ -79,6 +79,13 @@ class TableBuilder implements TableBuilderInterface
      * @var array
      */
     public array $queryStringFilters = [];
+
+    /**
+     * The empty message.
+     *
+     * @var string|null
+     */
+    public ?string $emptyMessage = '';
 
     /**
      * Initialise the TableBuilder

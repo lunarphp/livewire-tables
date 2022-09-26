@@ -2,6 +2,9 @@
 
 namespace Lunar\LivewireTables\Tests;
 
+use Livewire\LivewireServiceProvider;
+use Lunar\LivewireTables\LivewireTablesServiceProvider;
+
 class TestCase extends \Orchestra\Testbench\TestCase
 {
     public function setUp(): void
@@ -12,6 +15,8 @@ class TestCase extends \Orchestra\Testbench\TestCase
     protected function getPackageProviders($app)
     {
         return [
+            LivewireTablesServiceProvider::class,
+            LivewireServiceProvider::class,
         ];
     }
 

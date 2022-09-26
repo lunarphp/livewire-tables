@@ -1,8 +1,8 @@
 {
-  "name": "lunarphp-livewire-tables",
+  "name": "lunar-livewire-tables",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://lunarphp@github.com/lunarphp/livewire-tables",
+  "repository": "https://lunarphp@github.com/lunar/livewire-tables",
   "author": "LunarPHP <hello@lunarphp.io>",
   "license": "MIT",
   "scripts": {
